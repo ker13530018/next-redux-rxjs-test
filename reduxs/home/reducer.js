@@ -2,15 +2,14 @@ const initialState = {
   data: {},
   loading: false,
   error: null,
-  message: 'Welcome to react app',
 }
 
 export default (state = initialState, action) => {
   const { type, ...rest } = action
 
-  if (type.startsWith('test/')) {
+  if (type.startsWith('home/')) {
     const newState = Object.assign({}, state, rest)
-    console.log('newState =>', newState)
+    // console.log('newState =>', newState)
     return newState
   }
 

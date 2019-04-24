@@ -2,13 +2,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { testInit } from '../reduxs/test/action'
+import { homeInit } from '../reduxs/home/action'
 
-class Index extends Component {
+import getConfig from 'next/config'
+const { serverRuntimeConfig } = getConfig()
+
+class Home extends Component {
   static async getInitialProps() {
+    let { API_URL } = serverRuntimeConfig
     const {
       data: { message },
-    } = await axios.get('http://localhost:3000/api/server')
+    } = await axios.get(`${API_URL}/server`)
     return { message }
   }
 
@@ -18,11 +22,13 @@ class Index extends Component {
 
   handleOnclick = () => {
     const { dispatch } = this.props
-    console.log(dispatch(testInit()))
+    dispatch(homeInit())
   }
 
   render() {
     const { message } = this.props
+    // const { message: storeMessage } = testReducer
+    // console.log('render =>', message)
     return (
       <div>
         <div>{message}</div>
@@ -37,6 +43,6 @@ class Index extends Component {
 }
 
 export default connect(
-  state => ({ ...state }),
+  ({ homeReducer }) => homeReducer,
   dispatch => ({ dispatch }),
-)(Index)
+)(Home)

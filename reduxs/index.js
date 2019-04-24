@@ -2,19 +2,23 @@
 import { combineEpics, createEpicMiddleware } from 'redux-observable'
 import { combineReducers, createStore, applyMiddleware, compose } from 'redux'
 // epic section
-import { testInitEpic } from './test/epic'
+import getConfig from 'next/config'
+import { homeInitEpic } from './home/epic'
 
 // reducer section
-import testReducer from './test/reducer'
+import homeReducer from './home/reducer'
+
+const { publicRuntimeConfig } = getConfig()
+const { API_URL } = publicRuntimeConfig
 
 const rootReducer = combineReducers({
-  testReducer,
+  homeReducer,
 })
 
-const rootEpic = combineEpics(testInitEpic)
+const rootEpic = combineEpics(homeInitEpic)
 
 export const makeStore = () => {
-  const epicMiddleware = createEpicMiddleware({ dependencies: {} })
+  const epicMiddleware = createEpicMiddleware({ dependencies: { API_URL } })
 
   const composeEnhancers = compose
 

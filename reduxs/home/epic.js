@@ -2,20 +2,20 @@ import { switchMap, map, catchError } from 'rxjs/operators'
 import { from, of } from 'rxjs'
 import axios from 'axios'
 import { ofType } from 'redux-observable'
-import { TEST, testInitCancel, testInitDone } from './action'
+import { HOME, homeInitCancel, homeInitDone } from './action'
 
-export const testInitEpic = (action$, state$) =>
+export const homeInitEpic = (action$, state$, { API_URL }) =>
   action$.pipe(
     //
-    ofType(TEST),
+    ofType(HOME),
     //
     switchMap(() => {
       return (
-        from(axios.get('http://localhost:3000/api/script'))
+        from(axios.get(`${API_URL}/script`))
           //
           .pipe(
             switchMap(({ data }) => {
-              return of(testInitDone(data))
+              return of(homeInitDone(data))
             }),
           )
       )
