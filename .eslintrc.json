@@ -1,0 +1,11 @@
+{
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "no-unused-vars": 0,
+    "react/prop-types": 0,
+    "no-nested-ternary": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "prettier/prettier": ["error"]
+  }
+}
