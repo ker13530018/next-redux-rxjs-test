@@ -18,10 +18,10 @@ module.exports = (phase, { defaultConfig }) => {
   return {
     /* config options for all phases except development here */
     serverRuntimeConfig: {
-      API_URL: 'http://localhost:3000/api',
+      API_URL: 'http://localhost:3001/api',
     },
     publicRuntimeConfig: {
-      API_URL: 'http://localhost:3000/api',
+      API_URL: 'http://localhost:3001/api',
     },
   }
 }

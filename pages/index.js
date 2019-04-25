@@ -6,6 +6,7 @@ import { homeInit } from '../reduxs/home/action'
 
 import getConfig from 'next/config'
 const { serverRuntimeConfig } = getConfig()
+import Link from 'next/link'
 
 class Home extends Component {
   static async getInitialProps() {
@@ -36,6 +37,20 @@ class Home extends Component {
           <button type="button" onClick={() => this.handleOnclick()}>
             Click!
           </button>
+        </div>
+        <div>
+          <ul>
+            <li>
+              <Link href="/content/example-1">
+                <a>example-1</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/content/example-2">
+                <a>example-2</a>
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     )
